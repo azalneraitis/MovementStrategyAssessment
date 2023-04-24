@@ -1,4 +1,4 @@
-package com.example.movementstrategyassessment.ui.dashboard;
+package com.example.movementstrategyassessment.ui.research;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.movementstrategyassessment.databinding.FragmentDashboardBinding;
+import com.example.movementstrategyassessment.databinding.FragmentResearchBinding;
 
-public class DashboardFragment extends Fragment {
+public class ResearchFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentResearchBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        ResearchViewModel researchViewModel =
+                new ViewModelProvider(this).get(ResearchViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentResearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textResearch;
+        researchViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

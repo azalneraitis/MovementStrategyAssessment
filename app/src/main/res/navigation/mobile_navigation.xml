@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.movementstrategyassessment.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_assessment"
+        android:name="com.example.movementstrategyassessment.ui.assessment.AssessmentFragment"
+        android:label="@string/title_assessment"
+        tools:layout="@layout/fragment_assessment" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.movementstrategyassessment.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_results"
+        android:name="com.example.movementstrategyassessment.ui.results.ResultsFragment"
+        android:label="@string/title_results"
+        tools:layout="@layout/fragment_results" />
+
+    <fragment
+        android:id="@+id/navigation_research"
+        android:name="com.example.movementstrategyassessment.ui.research.ResearchFragment"
+        android:label="@string/title_research"
+        tools:layout="@layout/fragment_research" />
 </navigation>
