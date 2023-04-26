@@ -6,14 +6,14 @@ public enum StageEnum {
     OVERHEAD_SQUAT_ASSESSMENT("Overhead Squat Assessment"),
     /*HEELS_RAISED_OHSA("Heels-Raised OHSA"),
     HANDS_HIPS_OHSA("Hands-On-Hips OHSA"),*/
-    SINGLE_LEG_SQUAT("Single-Leg/Split Squat Assessment"),
+    /*SINGLE_LEG_SQUAT("Single-Leg/Split Squat Assessment"),
     LOADED_SQUAT("Loaded Squat Assessment"),
     LOADED_PUSH("Loaded Push Assessment"),
     LOADED_PULL("Loaded Pull Assessment"),
     OVERHEAD_PRESS("Standing Overhead Press Assessment"),
     GAIT_ASSESSMENT("Gait Assessment"),
     DEPTH_JUMP("Depth Jump Assessment"),
-    DAVIES_TEST("Davies Test"),
+    DAVIES_TEST("Davies Test"),*/
     MOBILITY_ASSESSMENT("Mobility Assessment"),
     RESULTS_STAGE("Results");
 

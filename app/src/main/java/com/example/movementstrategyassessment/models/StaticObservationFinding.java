@@ -6,46 +6,45 @@ import java.util.List;
 // TODO: Convert to JSON import
 public enum StaticObservationFinding {
     // Foot and ankle
-    FEET_STRAIGHT("Feet: Straight/Parallel"),
+    //FEET_STRAIGHT("Feet: Straight/Parallel"),
     FEET_EXTERNAL_ROTATE("Feet: Externally Rotated"),
-    ARCH_NEUTRAL("Arch: Neutral"),
+   // ARCH_NEUTRAL("Arch: Neutral"),
     ARCH_FLATTENED("Arch: Flattened (Pes Planus"),
     ARCH_RAISED("Arch: Raised (Pes Cavus)"),
-    LOWER_LEG_VERTICAL("Lower Leg is Vertical"),
-    LOWER_LEG_POSTERIOR_DISPLACED("Lower Leg Posteriorly Displaced (Plantar Flexed)"),
+   // LOWER_LEG_VERTICAL("Lower Leg is Vertical"),
 
     // Knee
-    KNEE_IN_LINE("Knee Inline w/ 2nd & 3rd Toes"),
-    KNEE_VALGUS(""),
-    KNEE_VARUS(""),
-    KNEE_STRAIGHT(""),
-    KNEE_FLEXED(""),
-    KNEE_HYPEREXTENDED(""),
+   // KNEE_IN_LINE("Knee Inline w/ 2nd & 3rd Toes"),
+    KNEE_VALGUS("Knee Valgus"),
+    KNEE_VARUS("Knee Varus"),
+  //  KNEE_STRAIGHT("Knee Straight"),
+    KNEE_FLEXED("Knee Flexed"),
+    KNEE_HYPEREXTENDED("Knee Hyperextension"),
 
     // LPHC
-    PELVIS_LEVEL(""),
-    PELVIS_ANTERIOR_TILT(""),
-    PELVIS_POSTERIOR_TILT(""),
-    HIPS_NEUTRAL(""),
-    HIPS_FLEXED(""),
-    HIPS_EXTENDED(""),
-    LSPINE_NORMAL(""),
-    LSPINE_EXC_LORDOSIS(""),
-    LSPINE_RED_LORDOSIS(""),
-    LSPINE_LATERAL_SHIFT(""),
+   // PELVIS_LEVEL("Pelvis is level"),
+    PELVIS_ANTERIOR_TILT("Pelvis Anterior Tilt"),
+    PELVIS_POSTERIOR_TILT("Pelvis Posterior Tilt"),
+   // HIPS_NEUTRAL("Hips are neutral"),
+    HIPS_FLEXED("Hips are flexed"),
+    HIPS_EXTENDED("Hips are extended"),
+   // LSPINE_NORMAL("L-Spine is normal"),
+    LSPINE_EXC_LORDOSIS("L-Spine Excessive Lordosis"),
+    LSPINE_RED_LORDOSIS("L-Spine Reduced Lordosis"),
+    LSPINE_LATERAL_SHIFT("L-Spine Lateral Shift"),
 
     // Shoulder and T-spine
-    SHOULDER_LEVEL(""),
-    SHOULDER_ELEVATE(""),
-    SHOULDER_INLINE_HIPS_EARS(""),
-    SHOULDER_ROUNDED(""),
-    TSPINE_NORMAL(""),
-    TSPINE_EXC_KYPHOSIS(""),
+   // SHOULDER_LEVEL("Shoulders are level"),
+    SHOULDER_ELEVATE("Shoulders are elevated"),
+   // SHOULDER_INLINE_HIPS_EARS("Shoulders inline with Hips and Ears"),
+    SHOULDER_ROUNDED("Shoulders are rounded"),
+  //  TSPINE_NORMAL("T-Spine is normal"),
+    TSPINE_EXC_KYPHOSIS("T-Spine Excessive Kyphosis"),
 
     // Head and C-spine
-    HEAD_NEUTRAL(""),
-    HEAD_FORWARD(""),
-    CSPINE_NORMAL("");
+   // HEAD_NEUTRAL("Head is neutral"),
+    HEAD_FORWARD("Head is forward");
+    //CSPINE_NORMAL("C-Spine is normal");
 
     private final String label;
 
@@ -57,7 +56,7 @@ public enum StaticObservationFinding {
         return this.label;
     }
 
-    public static List<StaticObservationFinding> getAnteriorObservations() {
+    /*public static List<StaticObservationFinding> getAnteriorObservations() {
         List<StaticObservationFinding> ret = new ArrayList<>();
 
         ret.add(StaticObservationFinding.FEET_STRAIGHT);
@@ -117,5 +116,5 @@ public enum StaticObservationFinding {
         ret.add(StaticObservationFinding.HEAD_NEUTRAL);
 
         return ret;
-    }
+    }*/
 }

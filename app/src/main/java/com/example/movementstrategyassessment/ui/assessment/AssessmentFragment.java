@@ -19,6 +19,9 @@ import com.example.movementstrategyassessment.databinding.FragmentAssessmentBind
 import com.example.movementstrategyassessment.models.AssessmentResultService;
 import com.example.movementstrategyassessment.models.StageEnum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AssessmentFragment extends Fragment {
 
     private FragmentAssessmentBinding binding;
@@ -41,11 +44,11 @@ public class AssessmentFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         FragmentManager childFrags = getChildFragmentManager();
         staticFragment = (StaticPostureFragment) childFrags.findFragmentById(R.id.static_posture_fragment);
-        mvmtFragment= (MovementAssessmentFragment) childFrags.findFragmentById(R.id.movement_assessment_fragment);
-        mobFragment= (MobilityAssessmentFragment) childFrags.findFragmentById(R.id.mobility_assessment_fragment);
+        mvmtFragment = (MovementAssessmentFragment) childFrags.findFragmentById(R.id.movement_assessment_fragment);
+        mobFragment = (MobilityAssessmentFragment) childFrags.findFragmentById(R.id.mobility_assessment_fragment);
 
         configureAssessmentOrderButtons(view);
-        refreshStageView(view);
+        refreshStageView(view, false);
     }
 
     @Override
@@ -54,9 +57,14 @@ public class AssessmentFragment extends Fragment {
         binding = null;
     }
 
-    private void refreshStageView(View view){
+    private void refreshStageView(View view, boolean isSaveOnly) {
         MainActivity act = (MainActivity) getActivity();
         StageEnum currStage = act.getAssessmentResultsService().getCurrentStage();
+        if(currStage != StageEnum.UNSTARTED)
+        {
+            act.getSupportActionBar().setTitle(currStage.getLabel());
+        }
+
         switch (currStage) {
             case UNSTARTED:
                 binding.layoutUnstartedAssessment.setVisibility(View.VISIBLE);
@@ -75,7 +83,7 @@ public class AssessmentFragment extends Fragment {
                 break;
             case OVERHEAD_SQUAT_ASSESSMENT:
             /*case HEELS_RAISED_OHSA:
-            case HANDS_HIPS_OHSA:*/
+            case HANDS_HIPS_OHSA:
             case SINGLE_LEG_SQUAT:
             case LOADED_SQUAT:
             case LOADED_PUSH:
@@ -83,12 +91,16 @@ public class AssessmentFragment extends Fragment {
             case OVERHEAD_PRESS:
             case GAIT_ASSESSMENT:
             case DEPTH_JUMP:
-            case DAVIES_TEST:
+            case DAVIES_TEST:*/
                 binding.layoutUnstartedAssessment.setVisibility(View.GONE);
                 binding.layoutAssessmentNavigationFooter.setVisibility(View.VISIBLE);
                 binding.layoutMobilityFragment.setVisibility(View.GONE);
                 binding.layoutMovementFragment.setVisibility(View.VISIBLE);
                 binding.layoutStaticFragment.setVisibility(View.GONE);
+                if(!isSaveOnly)
+                {
+                    mvmtFragment.resetForStage(currStage);
+                }
                 break;
             case MOBILITY_ASSESSMENT:
                 binding.layoutUnstartedAssessment.setVisibility(View.GONE);
@@ -101,6 +113,7 @@ public class AssessmentFragment extends Fragment {
                 break;
         }
     }
+
     private void setupStartButtonAndText(View view) {
         MainActivity act = (MainActivity) getActivity();
         binding.assessmentTextStatus.setText(new StringBuilder().append(getString(R.string.status_display_message)).append(" ")
@@ -111,12 +124,11 @@ public class AssessmentFragment extends Fragment {
             AssessmentResultService assessmentSvc = act.getAssessmentResultsService();
             assessmentSvc.setIsAssessmentStarted(true);
             assessmentSvc.setCurrentStage(StageEnum.STATIC_OBSERVATION);
-            refreshStageView(v);
+            refreshStageView(v, false);
         });
     }
 
-    private void configureAssessmentOrderButtons(View view)
-    {
+    private void configureAssessmentOrderButtons(View view) {
         MainActivity act = ((MainActivity) getActivity());
 
         Button backButton = (Button) view.findViewById(R.id.assessment_back);
@@ -126,19 +138,30 @@ public class AssessmentFragment extends Fragment {
         backButton.setOnClickListener(v -> {
             AssessmentResultService assessmentSvc = act.getAssessmentResultsService();
             assessmentSvc.handleBackButtonPushed();
-            refreshStageView(view);
+            refreshStageView(view, false);
         });
 
         saveButton.setOnClickListener(v -> {
             AssessmentResultService assessmentSvc = act.getAssessmentResultsService();
-            assessmentSvc.handleSaveButtonPushed();
-            refreshStageView(view);
+            assessmentSvc.handleSaveButtonPushed(getChoiceSelections(assessmentSvc.getCurrentStage()));
+            refreshStageView(view, true);
         });
 
         nextButton.setOnClickListener(v -> {
             AssessmentResultService assessmentSvc = act.getAssessmentResultsService();
+            assessmentSvc.handleSaveButtonPushed(getChoiceSelections(assessmentSvc.getCurrentStage()));
             assessmentSvc.handleNextButtonPushed();
-            refreshStageView(view);
+            refreshStageView(view, false);
         });
+    }
+
+    public List<ObservationChoiceFragment> getChoiceSelections(StageEnum stage) {
+        List<ObservationChoiceFragment> retList = new ArrayList<>();
+
+        retList.addAll(staticFragment.getPositiveChoices());
+        retList.addAll(mvmtFragment.getPositiveChoices(stage));
+        retList.addAll(mobFragment.getPositiveChoices());
+
+        return retList;
     }
 }

@@ -14,9 +14,7 @@
         android:id="@+id/layout_unstarted_assessment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="427dp"
-        tools:layout_editor_absoluteY="322dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/assessment_text_status"
@@ -60,9 +58,9 @@
             android:id="@+id/static_posture_fragment"
             android:name="com.example.movementstrategyassessment.ui.assessment.StaticPostureFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:label="@string/static_posture_assessment"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/assessment_navigation_footer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -73,9 +71,7 @@
         android:id="@+id/layout_movement_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="427dp"
-        tools:layout_editor_absoluteY="322dp">
+        android:orientation="vertical">
 
         <fragment
             android:id="@+id/movement_assessment_fragment"
@@ -94,9 +90,7 @@
         android:id="@+id/layout_mobility_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="427dp"
-        tools:layout_editor_absoluteY="322dp">
+        android:orientation="vertical">
 
         <fragment
             android:id="@+id/mobility_assessment_fragment"
@@ -115,8 +109,8 @@
         android:id="@+id/layout_assessment_navigation_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <fragment
             android:id="@+id/assessment_navigation_footer"
